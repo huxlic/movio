@@ -1,16 +1,66 @@
-# React + Vite
+=======
+# Movio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movio is a movie search web app built with React and Vite.
 
-Currently, two official plugins are available:
+The main branch contains the stable project setup. Feature work for the movie
+search experience should happen in dedicated branches, such as
+`feature/movie-search`, before being merged back into `main`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- React
+- Vite
+- Tailwind CSS
+- ESLint
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+Install dependencies:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+## Branch Workflow
+
+Use `main` for stable code only.
+
+Create feature branches for active work:
+
+```bash
+git checkout -b feature/movie-search
+```
+
+After completing a feature, open a pull request or merge the branch back into
+`main`.
+
+## Project Status
+
+This project is in early development. The first major feature is the movie
+search interface.
+>>>>>>> theirs
