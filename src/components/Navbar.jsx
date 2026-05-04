@@ -6,7 +6,7 @@ import search from "../assets/icons/search.svg";
 
 const Navbar = () => {
   return (
-    <header className="bg-[#032541] w-full fixed top-0 left-0 pb-2">
+    <>
       <nav className="bg-[#032541] flex w-full items-center justify-between px-12 py-4">
         <a href="/" className="text-white text-2xl font-bold flex gap-1">
           Movio
@@ -33,17 +33,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-
-      <form action="">
-        <label htmlFor="search"></label>
-        <input
-          className="bg-white w-full outline-0 border-0 rounded py-2 px-4 text-sm"
-          type="text"
-          id="search"
-          placeholder="Search..."
-        />
-      </form>
-    </header>
+    </>
   );
 };
 
