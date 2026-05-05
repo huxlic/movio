@@ -3,11 +3,11 @@ const SearchBar = () => {
   return (
     <form
       action=""
-      className="w-full py-1.5 px-8 pr-2 flex bg-white outline-0 border-0 rounded-full"
+      className="w-full py-1 px-8 pr-1 flex bg-white outline-0 border-0 rounded-full"
     >
       <label htmlFor="search"></label>
       <input
-        className="outline-0 w-full text-sm placeholder:text-gray-400"
+        className="outline-0 w-full text-[.9rem] placeholder:text-gray-400"
         type="text"
         id="search"
         placeholder="Find your next favorite watch..."
