@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MovieCard from "./MovieCard";
 import APIs from "../data/trendingMoviesApi";
+import movieGridBg from "../assets/images/movie-grid-bg.jpg";
 
 const Trending = () => {
   const btn = ["Today", "This Week"];
@@ -22,9 +23,8 @@ const Trending = () => {
 
   return (
     <>
-      <section className="p-8">
-
-        <div className="flex gap-4 mb-4">
+      <section className="">
+        <div className="flex gap-4 p-8 pb-4">
           <h3 className="text-2xl font-bold items-center">Trending</h3>
           <div className="border rounded-full border-[#032541] font">
             {btn.map((item, index) => (
@@ -42,12 +42,19 @@ const Trending = () => {
           </div>
         </div>
 
-        <div className=" flex gap-6 overflow-x-auto py-4">
-            {trendingMovies && trendingMovies.map(({id, poster_path, title, release_date}) => {
-                return <MovieCard key={id} {...{poster_path, title, release_date}} />
+        <div
+          style={{
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0)), url(${movieGridBg})`,
+          }}
+          className=" flex gap-6 overflow-x-auto py-4 bg-cover bg-center px-8"
+        >
+          {trendingMovies &&
+            trendingMovies.map(({ id, poster_path, title, release_date }) => {
+              return (
+                <MovieCard key={id} {...{ poster_path, title, release_date }} />
+              );
             })}
         </div>
-
       </section>
     </>
   );

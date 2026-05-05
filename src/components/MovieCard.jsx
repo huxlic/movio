@@ -1,8 +1,14 @@
-// import { Link } from "react-router";
-
 import { Link } from "react-router";
 
 const MovieCard = ({ poster_path, title, release_date }) => {
+
+  const date = new Date(release_date);
+  const formatted = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  
   return (
     <>
       <div className="w-max rounded-lg rounded-b-2xl transition-all">
@@ -17,7 +23,7 @@ const MovieCard = ({ poster_path, title, release_date }) => {
           <Link className="leading-4 text-[.9rem] font-semibold mb-1.5 hover:text-[#18B9E3] hover:underline">
             {title}
           </Link>
-          <span className="text-[.8rem] block">{release_date}</span>
+          <span className="text-[.8rem] block">{formatted}</span>
         </div>
       </div>
     </>
