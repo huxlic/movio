@@ -1,25 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import APIs from "../data/trendingMoviesApi";
 import movieGridBg from "../assets/images/movie-grid-bg.jpg";
 
 const Trending = () => {
+  // const btn = useMemo(() => ["Today", "This Week"], []);
   const btn = ["Today", "This Week"];
   const [active, setActive] = useState(0);
   const [trendingMovies, setTrendingMovies] = useState([]);
 
-  async function fetchTrending() {
-    try {
-      const response = await fetch(APIs[btn[active]]);
-      const data = await response.json();
-      return setTrendingMovies(data.results);
-
-    } catch (error) {
-      console.error("Error fetching trending movies:", error);
+  useEffect(() => {
+    async function fetchTrending() {
+      try {
+        const response = await fetch(APIs[btn[active]]);
+        const data = await response.json();
+        return setTrendingMovies(data.results);
+      } catch (error) {
+        console.error("Error fetching trending movies:", error);
+      }
     }
-  };
+    fetchTrending();
+  }, [btn, active]);
 
-  fetchTrending();
 
   return (
     <>
@@ -33,7 +35,6 @@ const Trending = () => {
                 className={`h-full px-8 rounded-full text-[#032541] text-[.9rem] font-semibold transition-all ${active === index ? "bg-[#032541] text-white" : "hover:text-[#06477c]"}`}
                 onClick={() => {
                   setActive(index);
-                  fetchTrending();
                 }}
               >
                 {item}
