@@ -6,15 +6,19 @@ import formatRuntime from "../helpers/formatRuntime";
 import formatDate from "../helpers/formatDate";
 import getYear from "../helpers/getYear";
 import formatWords from "../helpers/formatWords";
+import DetailLoader from "../components/DetailLoader";
 
 const MovieDetails = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
 
+  const [loading, setLoading] = useState(false)
+
   const movieId = id.split("-")[0];
 
   useEffect(() => {
     async function fetchMovieDetails() {
+      setLoading(true)
       try {
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`,
@@ -24,6 +28,9 @@ const MovieDetails = () => {
         setMovieDetails(movie);
       } catch (error) {
         console.error("Error fetching movie details:", error);
+      }
+      finally {
+        setLoading(false);
       }
     }
     
@@ -49,7 +56,7 @@ const MovieDetails = () => {
           }}
         ></div>
 
-        <div className="flex-1">
+        {loading ? <DetailLoader/> : <div className="flex-1">
           <h2 className="text-white text-[35px] font-bold flex items-center ">
             {movieDetails.title}{" "}
             <span className="text-gray-400 font-normal text-lg ml-2">
@@ -67,7 +74,7 @@ const MovieDetails = () => {
               <li className="">{formatRuntime(movieDetails.runtime)}</li>
             </ul>
           </div>
-        </div>
+        </div>}
       </div>
     </>
   );
