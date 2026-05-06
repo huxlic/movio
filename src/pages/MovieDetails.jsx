@@ -1,10 +1,11 @@
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import API_KEY from "../data/apiKey";
 import Header from "../components/Header";
 import formatRuntime from "../helpers/formatRuntime";
 import formatDate from "../helpers/formatDate";
 import getYear from "../helpers/getYear";
+import formatWords from "../helpers/formatWords";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -12,18 +13,24 @@ const MovieDetails = () => {
 
   const movieId = id.split("-")[0];
 
-  async function fetchMovieDetails() {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`,
-      );
-      const movie = await response.json();
-      return setMovieDetails(movie);
-    } catch (error) {
-      console.error("Error fetching movie details:", error);
+  useEffect(() => {
+    async function fetchMovieDetails() {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`,
+        );
+
+        const movie = await response.json();
+        setMovieDetails(movie);
+      } catch (error) {
+        console.error("Error fetching movie details:", error);
+      }
     }
-  }
-  fetchMovieDetails();
+    
+    fetchMovieDetails();
+  }, [movieId]);
+
+  const words = movieDetails.genres && movieDetails.genres.map((genre) => genre.name);
 
   return (
     <>
@@ -56,10 +63,7 @@ const MovieDetails = () => {
               {movieDetails.origin_country})
             </span>
             <ul className="flex gap-7 text-white list-disc">
-              <li className="">
-                {movieDetails.genres &&
-                  movieDetails.genres.map((genre) => genre.name).join(" and ")}
-              </li>
+              <li className="">{formatWords(words)}</li>
               <li className="">{formatRuntime(movieDetails.runtime)}</li>
             </ul>
           </div>

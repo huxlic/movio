@@ -12,9 +12,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />}></Route>
         
-        {navLinks.map((ele, i) => {
+        {navLinks.map((ele) => {
           return (
-            <Route key={i} path={ele.path} element={<ele.element />}></Route>
+            <Route key={ele.path} path={ele.path} element={<ele.element />}></Route>
           )
         })}
         <Route path="*" element={<h1 className="text-3xl font-bold text-center mt-20">404 Not Found</h1>}></Route>
@@ -25,3 +25,4 @@ const App = () => {
 };
 
 export default App;
+ 
