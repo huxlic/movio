@@ -51,7 +51,7 @@ const Trending = () => {
           {trendingMovies &&
             trendingMovies.map(({ id, poster_path, title, release_date }) => {
               return (
-                <MovieCard key={id} {...{ poster_path, title, release_date }} />
+                <MovieCard key={id} {...{ poster_path, title, release_date, id }} />
               );
             })}
         </div>

@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+import API_KEY from "./apiKey";
 
 const APIs = {
   Today: `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`,
