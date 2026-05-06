@@ -2,26 +2,32 @@ import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import APIs from "../data/trendingMoviesApi";
 import movieGridBg from "../assets/images/movie-grid-bg.jpg";
+import Loader from "./Loader";
 
+const btn = ["Today", "This Week"];
 const Trending = () => {
   // const btn = useMemo(() => ["Today", "This Week"], []);
-  const btn = ["Today", "This Week"];
+
+  const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
     async function fetchTrending() {
+      setLoading(true);
       try {
         const response = await fetch(APIs[btn[active]]);
         const data = await response.json();
-        return setTrendingMovies(data.results);
+        setTrendingMovies(data.results);
       } catch (error) {
         console.error("Error fetching trending movies:", error);
+      } finally {
+        setLoading(false);
       }
     }
-    fetchTrending();
-  }, [btn, active]);
 
+    fetchTrending();
+  }, [active]);
 
   return (
     <>
@@ -49,12 +55,18 @@ const Trending = () => {
           }}
           className=" flex gap-6 overflow-x-auto py-4 bg-cover bg-center px-8"
         >
-          {trendingMovies &&
+          {loading ? (
+            <Loader />
+          ) : (
             trendingMovies.map(({ id, poster_path, title, release_date }) => {
               return (
-                <MovieCard key={id} {...{ poster_path, title, release_date, id }} />
+                <MovieCard
+                  key={id}
+                  {...{ poster_path, title, release_date, id }}
+                />
               );
-            })}
+            })
+          )}
         </div>
       </section>
     </>
