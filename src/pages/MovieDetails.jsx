@@ -49,7 +49,6 @@ const MovieDetails = () => {
   return (
     <>
       <Header />
-      <div className="w-full h-16 bg-[#032541] transition-all ease-in-out"></div>
       <div
         className={`w-full h-[80vh] bg-[url()] bg-cover bg-top flex gap-8 p-8`}
         style={{
