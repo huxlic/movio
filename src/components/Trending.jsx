@@ -10,17 +10,20 @@ const Trending = () => {
 
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
+  const [error, setError] = useState(null)
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
     async function fetchTrending() {
       setLoading(true);
+      setError(null)
       try {
         const response = await fetch(APIs[btn[active]]);
         const data = await response.json();
         setTrendingMovies(data.results);
       } catch (error) {
         console.error("Error fetching trending movies:", error);
+        setError("Failed to load trending movies. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -55,7 +58,7 @@ const Trending = () => {
           }}
           className=" flex gap-6 overflow-x-auto py-4 bg-cover bg-center px-8"
         >
-          {loading ? (
+          {loading || error ? (
             <Loader />
           ) : (
             trendingMovies.map(({ id, poster_path, title, release_date }) => {
