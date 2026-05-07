@@ -9,6 +9,7 @@ import formatWords from "../helpers/formatWords";
 import DetailLoader from "../components/DetailLoader";
 import RoundedProgBar from "../components/RoundedProgBar";
 import formatPercentage from "../helpers/formatPercentage";
+import Overview from "../components/Overview";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const MovieDetails = () => {
       setError(null);
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`,
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=release_dates`,
         );
 
         const movie = await response.json();
@@ -66,29 +67,37 @@ const MovieDetails = () => {
                 backgroundImage: `url(https://media.themoviedb.org/t/p/original${movieDetails.poster_path})`,
               }}
             ></div>
-            <div className="flex-1">
-              <h2 className="text-white text-[35px] font-bold flex items-center ">
-                {movieDetails.title}{" "}
-                <span className="text-gray-400 font-normal text-lg ml-2">
-                  ({getYear(movieDetails.release_date)})
-                </span>
-              </h2>
+            <div className="flex-1 flex flex-col justify-between">
+              <div className="">
+                <h2 className="text-white text-[35px] font-bold flex items-center ">
+                  {movieDetails.title}{" "}
+                  <span className="text-gray-400 font-normal text-lg ml-2">
+                    ({getYear(movieDetails.release_date)})
+                  </span>
+                </h2>
 
-              <div className="flex gap-6 text-[.8rem] text-white">
-                <span className=" font-normal">
-                  {formatDate(movieDetails.release_date)} (
-                  {movieDetails.origin_country})
-                </span>
-                <ul className="flex gap-6 text-white list-disc">
-                  <li className="">{formatWords(words)}</li>
-                  <li className="">{formatRuntime(movieDetails.runtime)}</li>
-                </ul>
-              </div>
+                <div className="flex gap-6 text-[.8rem] text-white">
+                  <span className=" font-normal">
+                    {formatDate(movieDetails.release_date)} (
+                    {movieDetails.origin_country})
+                  </span>
+                  <ul className="flex gap-6 text-white list-disc">
+                    <li className="">{formatWords(words)}</li>
+                    <li className="">{formatRuntime(movieDetails.runtime)}</li>
+                  </ul>
+                </div>
 
-              <div className="flex items-center gap-2 mt-4">
-                <RoundedProgBar percentage={formatPercentage(movieDetails.vote_average)} />
-                <span className="font-bold text-white w-12">User Score</span>
+                <div className="flex items-center gap-2 mt-4">
+                  <RoundedProgBar
+                    percentage={formatPercentage(movieDetails.vote_average)}
+                  />
+                  <span className="font-bold text-white w-12">User Score</span>
+                </div>
               </div>
+              <Overview
+                overview={movieDetails.overview}
+                tagline={movieDetails.tagline}
+              />
             </div>
           </>
         )}
