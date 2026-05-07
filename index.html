@@ -2,9 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/movio/assets/clapperboard-CaVdJGqY.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/movio/assets/clapperboard-CaVdJGqY.svg"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/src/style.css" rel="stylesheet" />
+    <script>
+      var path = new URLSearchParams(window.location.search).get("path");
+      if (path) {
+        window.history.replaceState(null, null, "/movio" + path);
+      }
+    </script>
     <title>Movio | Movie Search</title>
     <script type="module" crossorigin src="/movio/assets/index-DSIQtlSN.js"></script>
     <link rel="stylesheet" crossorigin href="/movio/assets/index-b_Ho7IfV.css">
