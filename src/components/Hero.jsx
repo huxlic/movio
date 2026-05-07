@@ -11,7 +11,7 @@ const Hero = () => {
         }}
         className="w-full h-[60vh] bg-cover bg-center] flex flex-col gap-8 px-16 justify-center items-center"
       >
-        <h2 className="text-white text-4xl font-bold text-center ">
+        <h2 className="text-white text-4xl font-bold text-center leading-8 ">
           Explore the world of entertainment.{" "}
           <span className="text-[1.2rem] block font-semibold">
             Find movies, TV shows, and people worth watching.
