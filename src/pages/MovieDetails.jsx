@@ -7,6 +7,8 @@ import formatDate from "../helpers/formatDate";
 import getYear from "../helpers/getYear";
 import formatWords from "../helpers/formatWords";
 import DetailLoader from "../components/DetailLoader";
+import RoundedProgBar from "../components/RoundedProgBar";
+import formatPercentage from "../helpers/formatPercentage";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -72,15 +74,20 @@ const MovieDetails = () => {
                 </span>
               </h2>
 
-              <div className="flex gap-7 text-[.9rem] text-white">
+              <div className="flex gap-6 text-[.8rem] text-white">
                 <span className=" font-normal">
                   {formatDate(movieDetails.release_date)} (
                   {movieDetails.origin_country})
                 </span>
-                <ul className="flex gap-7 text-white list-disc">
+                <ul className="flex gap-6 text-white list-disc">
                   <li className="">{formatWords(words)}</li>
                   <li className="">{formatRuntime(movieDetails.runtime)}</li>
                 </ul>
+              </div>
+
+              <div className="flex items-center gap-2 mt-4">
+                <RoundedProgBar percentage={formatPercentage(movieDetails.vote_average)} />
+                <span className="font-bold text-white w-12">User Score</span>
               </div>
             </div>
           </>

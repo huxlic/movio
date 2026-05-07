@@ -5,7 +5,7 @@ import TVShows from "../pages/TVShows";
 const navLinks = [
   {
     text: "Movies",
-    path: "/movies",
+    path: "/movie",
     element: MoviesPage,
   },
   {
