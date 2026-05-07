@@ -1,18 +1,21 @@
-=======
-# Movio
+# Movio 🎬
 
-Movio is a movie search web app built with React and Vite.
+A movie discovery web app built with React and Vite, powered by the TMDB API.
 
-The main branch contains the stable project setup. Feature work for the movie
-search experience should happen in dedicated branches, such as
-`feature/movie-search`, before being merged back into `main`.
+🔗 [Live Demo](https://huxlic.github.io/movio/)
 
 ## Tech Stack
 
 - React
 - Vite
 - Tailwind CSS
-- ESLint
+- TMDB API
+
+## Features
+
+- Browse trending movies (Today / This Week)
+- View detailed movie information
+- Responsive design
 
 ## Getting Started
 
@@ -34,33 +37,21 @@ Build for production:
 npm run build
 ```
 
-Preview the production build locally:
+Deploy to GitHub Pages:
 
 ```bash
-npm run preview
+npm run deploy
 ```
 
-Run lint checks:
+## Notes
 
-```bash
-npm run lint
-```
+- `.env` file is required with your TMDB API key
+- Hosted on GitHub Pages — base path is set to `/movio/` in `vite.config.js`
 
-## Branch Workflow
 
-Use `main` for stable code only.
+## Acknowledgements
 
-Create feature branches for active work:
+This project's UI is inspired by [TMDB (The Movie Database)](https://www.themoviedb.org/).
+All movie data is fetched from the TMDB API.
 
-```bash
-git checkout -b feature/movie-search
-```
-
-After completing a feature, open a pull request or merge the branch back into
-`main`.
-
-## Project Status
-
-This project is in early development. The first major feature is the movie
-search interface.
->>>>>>> theirs
+> This product uses the TMDB API but is not endorsed or certified by TMDB.
