@@ -6,7 +6,6 @@ import Loader from "./Loader";
 
 const btn = ["Today", "This Week"];
 const Trending = () => {
-  // const btn = useMemo(() => ["Today", "This Week"], []);
 
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
@@ -21,6 +20,7 @@ const Trending = () => {
         const response = await fetch(APIs[btn[active]]);
         const data = await response.json();
         setTrendingMovies(data.results);
+        // console.log(data);
       } catch (error) {
         console.error("Error fetching trending movies:", error);
         setError("Failed to load trending movies. Please try again.");
@@ -61,11 +61,15 @@ const Trending = () => {
           {loading || error ? (
             <Loader />
           ) : (
-            trendingMovies.map(({ id, poster_path, title, release_date }) => {
+            trendingMovies.map(({ id, poster_path, title, name, release_date, first_air_date, media_type }) => {
+              const titleName = title || name;
+              const releaseDate = release_date || first_air_date;
               return (
                 <MovieCard
                   key={id}
-                  {...{ poster_path, title, release_date, id }}
+                  {...{ poster_path, id, media_type }}
+                  title={titleName}
+                  release_date={releaseDate}
                 />
               );
             })

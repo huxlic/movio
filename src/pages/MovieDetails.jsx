@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import API_KEY from "../data/apiKey";
 import Header from "../components/Header";
 import formatRuntime from "../helpers/formatRuntime";
@@ -10,8 +10,11 @@ import DetailLoader from "../components/DetailLoader";
 import RoundedProgBar from "../components/RoundedProgBar";
 import formatPercentage from "../helpers/formatPercentage";
 import Overview from "../components/Overview";
+import { MediaTypeContext } from "../hooks/GlobalContext";
 
 const MovieDetails = () => {
+  const { mediaType } = useContext(MediaTypeContext);
+
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
 
@@ -26,7 +29,7 @@ const MovieDetails = () => {
       setError(null);
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=release_dates`,
+          `https://api.themoviedb.org/3/${mediaType}/${movieId}?api_key=${API_KEY}&append_to_response=release_dates,casts`,
         );
 
         const movie = await response.json();
@@ -41,7 +44,7 @@ const MovieDetails = () => {
     }
 
     fetchMovieDetails();
-  }, [movieId]);
+  }, [mediaType, movieId]);
 
   const words =
     movieDetails.genres && movieDetails.genres.map((genre) => genre.name);
@@ -69,20 +72,33 @@ const MovieDetails = () => {
             <div className="flex-1 flex flex-col justify-between">
               <div className="">
                 <h2 className="text-white text-[35px] font-bold flex items-center ">
-                  {movieDetails.title}{" "}
+                  {movieDetails.title || movieDetails.name}{" "}
                   <span className="text-gray-400 font-normal text-lg ml-2">
-                    ({getYear(movieDetails.release_date)})
+                    (
+                    {getYear(
+                      movieDetails.release_date || movieDetails.first_air_date,
+                    )}
+                    )
                   </span>
                 </h2>
 
                 <div className="flex gap-6 text-[.8rem] text-white">
+                  <div className="border rounded px-2 text-gray-400">
+                    <p>R</p>
+                  </div>
                   <span className=" font-normal">
-                    {formatDate(movieDetails.release_date)} (
-                    {movieDetails.origin_country})
+                    {formatDate(
+                      movieDetails.release_date || movieDetails.first_air_date,
+                    )}{" "}
+                    ({movieDetails.origin_country})
                   </span>
                   <ul className="flex gap-6 text-white list-disc">
                     <li className="">{formatWords(words)}</li>
-                    <li className="">{formatRuntime(movieDetails.runtime)}</li>
+                    {movieDetails.runtime && (
+                      <li className="">
+                        {formatRuntime(movieDetails.runtime)}
+                      </li>
+                    )}
                   </ul>
                 </div>
 
@@ -103,6 +119,6 @@ const MovieDetails = () => {
       </div>
     </>
   );
-};
+};;
 
 export default MovieDetails;

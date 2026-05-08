@@ -5,7 +5,6 @@ const MoviesPage = () => {
   return (
     <>
       <Header />
-      MoviesPage
     </>
   );
 };
