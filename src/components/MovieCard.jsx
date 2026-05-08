@@ -1,6 +1,16 @@
-import { Link } from "react-router";
 
-const MovieCard = ({ poster_path, title, release_date, id }) => {
+import { useContext } from "react";
+import { Link } from "react-router";
+import { MediaTypeContext } from "../hooks/GlobalContext";
+
+const MovieCard = ({ poster_path, title, release_date, id, media_type }) => {
+
+  const {setMediaType} = useContext(MediaTypeContext);
+
+  const handleClick = () => {
+    setMediaType(media_type);
+  };
+
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -19,6 +29,7 @@ const MovieCard = ({ poster_path, title, release_date, id }) => {
         <Link
           to={`/movie/${id}-${formattedTitle}`}
           className="flex w-37.5 aspect-2/3 bg-white rounded-lg shadow-2xl overflow-hidden transition-all hover:border hover:border-light-gray hover:scale-[1.01]"
+          onClick={handleClick}
         >
           <img
             className="w-full block aspect-2/3"
