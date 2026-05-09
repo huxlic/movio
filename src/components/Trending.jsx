@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import APIs from "../data/trendingMoviesApi";
-import movieGridBg from "../assets/images/movie-grid-bg.jpg";
+import rainingLines from "../assets/images/raining-lines.jpg";
 import Loader from "./Loader";
 
 const btn = ["Today", "This Week"];
@@ -35,7 +35,7 @@ const Trending = () => {
   return (
     <>
       <section className="">
-        <div className="flex gap-4 p-8 pb-4">
+        <div className="w-full flex gap-4 p-8 pb-4">
           <h3 className="text-2xl font-bold items-center">Trending</h3>
           <div className="border rounded-full border-[#032541] font">
             {btn.map((item, index) => (
@@ -54,26 +54,38 @@ const Trending = () => {
 
         <div
           style={{
-            backgroundImage: `linear-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0)), url(${movieGridBg})`,
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, .7), rgba(255, 255, 255)), url(${rainingLines})`,
           }}
-          className=" flex gap-6 overflow-x-auto py-4 bg-cover bg-center px-8"
+          className=" flex py-4 bg-cover bg-center px-8"
         >
-          {loading || error ? (
-            <Loader />
-          ) : (
-            trendingMovies.map(({ id, poster_path, title, name, release_date, first_air_date, media_type }) => {
-              const titleName = title || name;
-              const releaseDate = release_date || first_air_date;
-              return (
-                <MovieCard
-                  key={id}
-                  {...{ poster_path, id, media_type }}
-                  title={titleName}
-                  release_date={releaseDate}
-                />
-              );
-            })
-          )}
+          <div className=" flex gap-6 overflow-x-auto">
+            {loading || error ? (
+              <Loader />
+            ) : (
+              trendingMovies.map(
+                ({
+                  id,
+                  poster_path,
+                  title,
+                  name,
+                  release_date,
+                  first_air_date,
+                  media_type,
+                }) => {
+                  const titleName = title || name;
+                  const releaseDate = release_date || first_air_date;
+                  return (
+                    <MovieCard
+                      key={id}
+                      {...{ poster_path, id, media_type }}
+                      title={titleName}
+                      release_date={releaseDate}
+                    />
+                  );
+                },
+              )
+            )}
+          </div>
         </div>
       </section>
     </>
