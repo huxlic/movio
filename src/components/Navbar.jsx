@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-[#032541] flex w-full items-center justify-between px-12 py-4">
-        <a href="/" className="text-white text-2xl font-bold flex gap-1">
+        <a href="/movio/" className="text-white text-2xl font-bold flex gap-1">
           Movio
           <img className="invert" src={logo} alt="Movio Logo" />
         </a>

@@ -13,7 +13,7 @@ const TVShows = () => {
     async function fetchMovies() {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&page=${page}`,
+          `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&page=${page}`,
         );
         const popularMovies = await response.json();
         setMovies((prev) =>
