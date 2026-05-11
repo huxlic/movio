@@ -13,7 +13,7 @@ const MoviesPage = () => {
     async function fetchMovies() {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=${page}`,
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${page}`,
         );
         const popularMovies = await response.json();
         setMovies((prev) =>
