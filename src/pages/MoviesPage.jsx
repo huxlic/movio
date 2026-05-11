@@ -38,17 +38,28 @@ const MoviesPage = () => {
 
         <div className="grid grid-cols-5 gap-y-9 gap-x-6 w-full">
           {movies.map((movie, index) => {
-            return <BiggerMovieCard key={index} {...movie} />
+            return (
+              <BiggerMovieCard
+                key={index}
+                poster_path={movie.poster_path}
+                title={movie.title}
+                release_date={movie.release_date}
+                id={movie.id}
+                media_type="movie"
+              />
+            );
           })}
         </div>
 
         <div className="flex mt-6">
-          <button
-            onClick={() => setPage(page + 1)}
-            className={`flex-1 bg-[#0B0B09] text-white rounded-2xl p-2 ${page === totalPages ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
-          >
-            Load More
-          </button>
+          {movies && (
+            <button
+              onClick={() => setPage(page + 1)}
+              className={`flex-1 bg-[#0B0B09] text-white rounded-2xl p-2 ${page === totalPages ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+            >
+              Load More
+            </button>
+          )}
         </div>
       </section>
     </>

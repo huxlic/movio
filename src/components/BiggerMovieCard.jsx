@@ -21,7 +21,7 @@ const BiggerMovieCard = ({ poster_path, title, release_date, id, media_type }) =
 
   return (
     <>
-      <div className="w-max rounded-lg rounded-b-2xl transition-all shadow">
+      <div className="w-full rounded-lg rounded-b-2xl transition-all shadow">
         <Link
           to={`/movie/${id}-${formattedTitle}`}
           className="flex aspect-2/3 bg-white rounded-lg rounded-b-none overflow-hidden transition-all"
@@ -33,8 +33,9 @@ const BiggerMovieCard = ({ poster_path, title, release_date, id, media_type }) =
             alt=""
           />
         </Link>
-        <div className="text-black w-37.5 p-3 box-border flex flex-col">
+        <div className="text-black w-full p-3 box-border flex flex-col">
           <Link
+            onClick={handleClick}
             to={`/movie/${id}-${formattedTitle}`}
             className="leading-4 text-[.9rem] font-bold mb-1.5 hover:text-[#18B9E3] hover:underline"
           >
