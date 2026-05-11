@@ -82,24 +82,27 @@ const MovieDetails = () => {
                   </span>
                 </h2>
 
-                <div className="flex gap-6 text-[.8rem] text-white">
-                  <div className="border rounded px-2 text-gray-400">
-                    <p>R</p>
+                <div className="flex gap-3 text-[.8rem] text-white mt-1">
+                  <div className="border rounded px-2 flex items-center text-gray-400 text-[.7rem]">
+                    <p>{movieDetails.status}</p>
                   </div>
-                  <span className=" font-normal">
-                    {formatDate(
-                      movieDetails.release_date || movieDetails.first_air_date,
-                    )}{" "}
-                    ({movieDetails.origin_country})
-                  </span>
-                  <ul className="flex gap-6 text-white list-disc">
-                    <li className="">{formatWords(words)}</li>
-                    {movieDetails.runtime && (
-                      <li className="">
-                        {formatRuntime(movieDetails.runtime)}
-                      </li>
-                    )}
-                  </ul>
+                  <div className="flex gap-6">
+                    <span className=" font-normal">
+                      {formatDate(
+                        movieDetails.release_date ||
+                          movieDetails.first_air_date,
+                      )}{" "}
+                      ({movieDetails.origin_country})
+                    </span>
+                    <ul className="flex gap-6 text-white list-disc">
+                      <li className="">{formatWords(words)}</li>
+                      {movieDetails.runtime && (
+                        <li className="">
+                          {formatRuntime(movieDetails.runtime)}
+                        </li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-2 mt-4">
