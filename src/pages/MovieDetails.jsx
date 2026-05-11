@@ -52,7 +52,7 @@ const MovieDetails = () => {
   return (
     <>
       <Header />
-      <div
+      <section
         className={`w-full h-[80vh] bg-[url()] bg-cover bg-top flex gap-8 p-8`}
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://media.themoviedb.org/t/p/original${movieDetails.backdrop_path})`,
@@ -116,7 +116,7 @@ const MovieDetails = () => {
             </div>
           </>
         )}
-      </div>
+      </section>
     </>
   );
 };;
