@@ -6,7 +6,6 @@ import BiggerMovieCard from "../components/BiggerMovieCard";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [totalPages, setTotalPages] = useState(null);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -21,7 +20,7 @@ const MoviesPage = () => {
             ? popularMovies.results
             : [...prev, ...popularMovies.results],
         );
-        setTotalPages(popularMovies.total_pages);
+
       } catch (err) {
         console.log(err);
       }
@@ -55,7 +54,7 @@ const MoviesPage = () => {
           {movies && (
             <button
               onClick={() => setPage(page + 1)}
-              className={`flex-1 bg-[#0B0B09] text-white rounded-2xl p-2 ${page === totalPages ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+              className="flex-1 bg-[#0B0B09] text-white rounded-2xl p-2 cursor-pointer"
             >
               Load More
             </button>

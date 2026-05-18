@@ -5,6 +5,7 @@ import navLinks from "../data/navLinks";
 import search from "../assets/icons/search.svg";
 
 const Navbar = () => {
+
   return (
     <>
       <nav className="bg-[#032541] flex w-full items-center justify-between px-12 py-4">
@@ -17,7 +18,7 @@ const Navbar = () => {
           {navLinks.map((ele, i) => {
             return (
               <Link
-                className="text-[.85rem] font-semibold hover:scale-[1.1]"
+                className="text-[.85rem] font-semibold"
                 key={i}
                 to={ele.path}
               >
