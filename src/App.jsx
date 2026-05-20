@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 import Landing from "./pages/Landing";
 import navLinks from "./data/navLinks";
 import MovieDetails from "./pages/MovieDetails";
-import ResultsPage from "./pages/ResultsPage";
+// import ResultsPage from "./pages/ResultsPage";
 
 const App = () => {
   return (
@@ -31,7 +31,7 @@ const App = () => {
           }
         ></Route>
         <Route path="/movie/:id" element={<MovieDetails />}></Route>
-        <Route path="/results" element={<ResultsPage />}></Route>
+        {/* <Route path="/results" element={<Results />}></Route> */}
       </Routes>
     </>
   );
