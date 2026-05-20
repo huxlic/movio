@@ -1,5 +1,12 @@
+import { useNavigate } from "react-router";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/results");
+  };
+
   return (
     <form
       action=""
@@ -12,11 +19,17 @@ const SearchBar = () => {
         id="search"
         placeholder="Find your next favorite watch..."
       />
-      <button className="rounded-full bg-linear-to-r from-cyan-400 via-teal-400 to-emerald-400 px-6 py-2 font-semibold text-[#032541] shadow-lg shadow-cyan-500/25 transition hover:scale-[1.02] hover:shadow-cyan-500/40">
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          handleClick();
+        }}
+        className="rounded-full bg-linear-to-r from-cyan-400 via-teal-400 to-emerald-400 px-6 py-2 font-semibold text-[#032541] shadow-lg shadow-cyan-500/25 transition hover:scale-[1.02] hover:shadow-cyan-500/40"
+      >
         Search
       </button>
     </form>
   );
-}
+};
 
-export default SearchBar
+export default SearchBar;
